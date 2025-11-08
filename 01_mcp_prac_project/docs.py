@@ -1,5 +1,5 @@
 doc = {
-    "name":"HASSAAN ARAIN",
+    "name":"Haris",
     "age":"17",
     "gender":"male"
 }

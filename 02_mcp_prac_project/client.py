@@ -34,7 +34,7 @@ class MCPClient:
         await self.Cleanup()
         self._session = None
 
-    # Tools/Resources/Prompts
+    # Tools
     async def tool_list(self)-> ListToolsResult:
         assert self._session, "Session Not Found"
         res = await self._session.list_tools()
@@ -45,7 +45,7 @@ class MCPClient:
         res = await self._session.call_tool(name=tool_name, arguments=arguments)
         return res.content[0].text
     
-
+    # Resources
     async def list_resource(self)-> ListResourcesResult:
         assert self._session, "Session Not Found"
         res = await self._session.list_resources()
@@ -58,7 +58,7 @@ class MCPClient:
         assert self._session, "Session Not Found"
         res = await self._session.read_resource(uri)
         return res
-    
+    # Prompts
     async def list_prompt(self)-> ListPromptsResult:
         assert self._session, "Session Not Found"
         res = await self._session.list_prompts()
@@ -111,6 +111,5 @@ async def main():
         print("GET PROMPT : ", get_second_prompt.messages[0].content.text)
         
         print("-"*100)
-
 
 asyncio.run(main())
