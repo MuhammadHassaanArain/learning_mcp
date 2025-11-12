@@ -1,10 +1,8 @@
 from mcp.server.fastmcp import FastMCP
 from mcp.server.fastmcp.server import Context
 import asyncio
-import logging
-mcp = FastMCP(name="progress_in_mcp", stateless_http=True)
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+
+mcp = FastMCP(name="progress_in_mcp", stateless_http=False)
 
 @mcp.tool()
 async def download_file(filename:str,size_mb:int, ctx:Context)-> str:
@@ -28,7 +26,7 @@ async def process_data(records:int, ctx:Context)-> str:
     await ctx.info(f"Starting to process {records} records")
     
     for i in range(records + 1):
-        # Report progress with descriptive messages
+        
         if i == 0:
             message = "Initializing data processor..."
         elif i < records // 4:
